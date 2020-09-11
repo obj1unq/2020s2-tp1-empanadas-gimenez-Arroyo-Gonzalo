@@ -2,6 +2,16 @@
 
 object galvan {
 	var sueldo = 15000
+	var deuda = 0
+	var dinero = 0
+	
+	method deuda () {
+		return deuda
+	}
+	
+	method dinero () {
+		return dinero
+	}
 	
 	method sueldo () {
 		return sueldo
@@ -12,8 +22,16 @@ object galvan {
 	}
 	
 	method cobrar () {
-		
+		const dineroActual = dinero + sueldo
+        dinero = 0.max(dineroActual - deuda)
+        deuda = 0.max(deuda - dineroActual)
 	}
+	
+	method gastar(cuanto) {
+        const deudaActual = deuda + cuanto
+        deuda = 0.max(deudaActual - dinero)
+        dinero = 0.max(dinero - deudaActual)
+    }
 }
 
 object baigorria {
